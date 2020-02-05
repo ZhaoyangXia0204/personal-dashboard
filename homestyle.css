@@ -1,0 +1,21 @@
+.card-panel {
+    display: flex;
+    margin: 0 auto;
+}
+body {
+    vertical-align: middle;
+    background-color: #e68888;
+}
+h4 {
+    text-decoration: underline;
+    font-size: large;
+    align-items: center;
+    
+} 
+h1 {
+    font-family: 'Quicksand', sans-serif;
+}
+.card-panel{
+    border-color: #e95d5d;
+    border-width: 4px;
+}
