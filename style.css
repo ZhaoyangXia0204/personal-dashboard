@@ -1,7 +1,8 @@
 .card {
     margin-top: 5px;
 }
-
-moment()
-                .add((moment().day()) + 1, "d")
-                .format("MMMM d"));
+​
+#map {
+height: 500px;
+width: 500px;
+ }
