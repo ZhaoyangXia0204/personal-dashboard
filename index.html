@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Personal Dashboard - Enter Name</title>
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="homestyle.css">
 
 </head>
@@ -55,9 +54,7 @@
     <script type="text/javascript">
 
         var firstNameEl = document.getElementById("first_name2");
-        // var firstName = firstNameEl.value;
         var lastNameEl = document.getElementById("last-name");
-        // var lastName = lastNameEl.value;
         var locationEl = document.getElementById("location");
         
 
@@ -73,15 +70,18 @@
             }
             var infoObjArr = [infoObj];
             (window.localStorage.setItem("info", JSON.stringify(infoObjArr)));
+        }        
+    
+        submitBtn.addEventListener("click", navigateHome);
+        function navigateHome() {
+            window.location = "home.html"
         }
-        console.log(localStorage.getItem("max"));
+        
+        var lsName = localStorage.getItem('infoObj');
 
-
-        // if (localstorage.getItem(firstName == "")) {
-
-            // window.location.replace("index.html")
-
-        // }
+        if (lsName = true){
+            window.location.assign("home.html");
+        }
 
     </script>
 
