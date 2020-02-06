@@ -89,7 +89,7 @@ function generateForecast(userSearch) {
             forecastCard.addClass("col card");
             forecastIcon.attr("src", forecastIconCode);
             forecastDayOf.text(moment()
-                .add((moment().day()) + i - 2, "d")
+                .add( 1+i,"d")
                 .format("MMMM Do"));; //returns sunday as 0, monday as 1...need to run this value through an if statement and change the text accordingly
             forecastHigh.text("High: " + forecastObject.high_temp + "° F");
             forecastLow.text("Low: " + forecastObject.low_temp + "° F");
