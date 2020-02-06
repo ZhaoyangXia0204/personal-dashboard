@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Personal Dashboard - Enter Name</title>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="homestyle.css">
+
+</head>
+
+<body>
+
+
+    <div class="container valign-wrapper center-align">
+        <h1>
+            Welcome to your personal dashboard!
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <div class="card-panel red lighten-4">
+                <div class="row center-align">
+                    <h4>First lets get some information from you</h4>
+                    <div class="input-field col s12">
+                        <input value="" id="first_name2" type="text" class="validate">
+                        <label class="active" for="first_name2">First Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input value="" id="last-name" type="text" class="validate">
+                        <label class="active" for="last_name2">Last Name</label>
+                    </div>
+                    <div class="input-field col s12 ">
+                        <input value="" id="location" type="text" class="validate">
+                        <label class="active" for="last_name2">Location</label>
+                    </div>
+                    <button id="submit" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        </span>
+    </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+
+        var firstNameEl = document.getElementById("first_name2");
+        // var firstName = firstNameEl.value;
+        var lastNameEl = document.getElementById("last-name");
+        // var lastName = lastNameEl.value;
+        var locationEl = document.getElementById("location");
+        
+
+        var submitBtn = document.getElementById("submit")
+
+        submitBtn.addEventListener("click", store);
+
+        function store() {
+            var infoObj = {
+                firstName : firstNameEl.value,
+                lastName : lastNameEl.value,
+                location : locationEl.value
+            }
+            var infoObjArr = [infoObj];
+            (window.localStorage.setItem("info", JSON.stringify(infoObjArr)));
+        }
+        console.log(localStorage.getItem("max"));
+
+
+        // if (localstorage.getItem(firstName == "")) {
+
+            // window.location.replace("index.html")
+
+        // }
+
+    </script>
+
+</body>
+
+</html>
