@@ -76,20 +76,18 @@
             window.location = "home.html"
         }
         
-        // var lsName = JSON.parse(localStorage.getItem("info"));
-        // console.log(lsName);
-        // var localName = lsName[0].firstName;
+        var lsName = JSON.parse(localStorage.getItem("info"));
+        console.log(lsName);      
+
+        if (lsName[0].firstName !== null){
+            window.location.assign("home.html");
+        }
+         // var localName = lsName[0].firstName;
         // var localLastName = lsName[0].lastName;
         // var localLocation = lsName[0].location;
         // console.log("Your name is: " + localName + " " + localLastName + " " + "Your home is: " + localLocation);
         // generateCurrent(localLocation);
         // generateForecast(localLocation);
-
-        
-
-        // if (lsName = true){
-        //     window.location.assign("home.html");
-        // }
 
     </script>
 

@@ -7,6 +7,10 @@ height: 500px;
 width: 500px;
  }
 
+ html{
+    background-color: #f4d0a8;
+}
+
  /* Stocks */
  @keyframes ticker {
     0% { transform: translate3d(0, 0, 0); }
