@@ -35,7 +35,7 @@ function generateCurrent(userSearch) {
   $(".fiveDay").empty();
   var latCoord = "";
   var lonCoord = "";
-  var apiKey = "f1347b661a93475fb7c664d08aaa163f";
+  var apiKey = "f10eb9f8eb6541a19b79c3e4015efc78";
   var queryURL =
     "https://api.weatherbit.io/v2.0/current?city=" + userSearch + "&units=I&key=" +
     apiKey;
@@ -63,17 +63,12 @@ function generateCurrent(userSearch) {
       center: [latCoord, lonCoord],
       zoom: 12
     });
-
-
     MQ.trafficLayer().addTo(map);
-
-
-
   });
 }
 function generateForecast(userSearch) {
   // var userSearch = "edison,nj"; //remove variable afterwords
-  var apiKey = "f1347b661a93475fb7c664d08aaa163f";
+  var apiKey = "f10eb9f8eb6541a19b79c3e4015efc78";
   var queryURL =
     "http://api.weatherbit.io/v2.0/forecast/daily?city=" +
     userSearch +
@@ -145,19 +140,30 @@ document.addEventListener('DOMContentLoaded', () => {
       drawOutput
     );
 
-
     function drawOutput(responseText) {
-
       let resp = JSON.parse(responseText);
       // console.log(resp);
-
-
+      //var priceColor = (resp.price + "").fontcolor("green");
       var newTicket = $("<div>");
       newTicket.addClass("ticker-item");
-      newTicket.text(resp.symbol + " $ " + resp.price);
+      newTicket.html(resp.symbol + `<span style="color: white">` + " $ " + resp.price + `</span>`);
       $(".ticker-move").append(newTicket);
     }
   }
+
+
+//   function drawOutput(responseText) {
+
+//     let resp = JSON.parse(responseText);
+//     // console.log(resp);
+
+
+//     var newTicket = $("<div>");
+//     newTicket.addClass("ticker-item");
+//     newTicket.text(resp.symbol + " $ " + resp.price);
+//     $(".ticker-move").append(newTicket);
+//   }
+// }
 
   function getRequest(url, success) {
     var req = false;
@@ -189,13 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 // News Sections
-$(".newsSearch").on("click", function(){
+$(".newsSearch").on("click", function () {
   $(".newsCard").empty();
   var searchTerm = $("#userNewsSearch").val();
   console.log(searchTerm);
-  if (searchTerm !== null){
-    return;
-  }else
   var apiKey = "3be1193829c74cafbb17c2c9c41adec0";
   var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&apiKey=" + apiKey;
   $.ajax({
@@ -261,30 +264,30 @@ var spanDone = document.getElementsByClassName("done")[0];
 
 
 
-btn.onclick = function() {
+btn.onclick = function () {
   $("#title").val("");
   $("#details").val("");
   modal.style.display = "block";
 }
 
 
-spanClose.onclick = function() {
+spanClose.onclick = function () {
   modal.style.display = "none";
-  
+
 
 }
-spanDone.onclick = function() {
+spanDone.onclick = function () {
   modal.style.display = "none";
-var eventTitle = $("#title").val();
-var eventList = $("<li>");
-eventList.text(eventTitle);
-$("#events").append(eventList);
-// $('<btn>complete</btn>').append(eventList);
+  var eventTitle = $("#title").val();
+  var eventList = $("<li>");
+  eventList.text(eventTitle);
+  $("#events").append(eventList);
+  // $('<btn>complete</btn>').append(eventList);
 
-  
+
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
