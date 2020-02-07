@@ -1,101 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Personal Dashboard - Enter Name</title>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <!--Maps-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
         <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24"></script>
         <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-traffic.js?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24"></script>
    
-   
+   <!--------------Todo List CSS link------->
+   <link rel="stylesheet" type="text/css" href="todoStyle.css" />
 
 
 
 
 
     <title>personal-dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="homestyle.css">
+
+
 </head>
+
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <div href="#!" class="brand-logo">Good Morning, <div class="name"></div></div>
-            <ul id="forecastList">
-              <li><p class="today active center"></p></li>
-              <li><p class="currentCity active"></p></li>
-              <li><p class="currentTemp active"></p></li>
-            </ul>
-            <ul class="right hide-on-med-and-down">
-                <li><input id="currentCity" type="search" required>
-                </li>
-                <li><a class="waves-effect waves-light btn citySearch">Search</a></li>
-                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i
-                            class="material-icons right">arrow_drop_down</i></a></li>
-            </ul>
-        </div>
-    </nav>
+
+
+    <div class="container valign-wrapper center-align">
+        <h1>
+            Welcome to your personal dashboard!
+        </h1>
+    </div>
     <div class="row">
-      <div class="col s12 m9 xl9">
-        <h6 class="dateTime"></h6>
-        <h6 class="cityTemp"></h6>
-        <div class="fiveDay"></div>
+        <div class="col s6 offset-s3">
+            <div class="card-panel red lighten-4">
+                <div class="row center-align">
+                    <h4>First lets get some information from you</h4>
+                    <div class="input-field col s12">
+                        <input value="" id="first_name2" type="text" class="validate">
+                        <label class="active" for="first_name2">First Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input value="" id="last-name" type="text" class="validate">
+                        <label class="active" for="last_name2">Last Name</label>
+                    </div>
+                    <div class="input-field col s12 ">
+                        <input value="" id="location" type="text" class="validate">
+                        <label class="active" for="last_name2">Location</label>
+                    </div>
+                    <button id="submit" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        </span>
+    </div>
+    </div>
+    </div>
+
+<!----------------Todo list Div------------->
+<div id="todoListDiv">
+  <div id="todoListHeader">
+    <p>My To Do List</p>
+    <div id="addTodoListPanel">
+      <input id="addTitleInput" type="text" placeholder="Title..." />
+      <input
+        onclick="addActivityItem();"
+        id="addTitleBtn"
+        type="button"
+        value="Add"
+      />
+      <p style="clear: both;"></p>
+    </div>
+    <div id="listTodo">
+      <div onclick="addDeleteActivity();" class="eachListItem addedItem">
+        <p>1. <span>Hit the Gyme</span></p>
       </div>
-        <div id="toDoList" class="col s12 m3">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">Today's Schedule</span>
-                    <div class="row">
-                      <form class="col s12">
-                        <div class="row">
-                          <div class="input-field col s6">
-                            <input id="input_text" type="text" data-length="10">
-                            <label for="input_text"></label>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="input-field col s6">
-                            <input id="input_text" type="text" data-length="10">
-                            <label for="input_text"></label>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="input-field col s12">
-                            <textarea id="textarea2" class="materialize-textarea" data-length="120"></textarea>
-                            <label for="textarea2">Textarea</label>
-                          </div>
-                        </div>
-                      </form>
-                    </div>                 
-                </div>
-            </div>
-        </div>
+      <div class="eachListItem">
+        <p>2. <span>available slot</span></p>
+      </div>
+      <div class="eachListItem">
+        <p>3. <span>available slot</span></p>
+      </div>
+      <div class="eachListItem">
+        <p>4. <span>available slot</span></p>
+      </div>
+      <div class="eachListItem">
+        <p>5. <span>available slot</span></p>
+      </div>
+      <div class="eachListItem">
+        <p>6. <span>available slot</span></p>
+      </div>
+      <div class="eachListItem">
+        <p>7. <span>available slot</span></p>
+      </div>
+      <div class="eachListItem">
+        <p>8. <span>available slot</span></p>
+      </div>
     </div>
-    <div class="row">
-      <div id="mapTraffic" class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title"></span>
-                <p>  <body style='border:0; margin: 0'>
-                  <div id='map' style='width: 100%; height:320px;'></div>
-              </body>
-              </p>
-            </div>
-        </div>
-    </div>
-        <div id="nytNews" class="col s12 m3">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title"></span>                   
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+  </div>
+</div>
+<script src="todoScript.js"></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -106,6 +121,43 @@
 
 
 
+    <script type="text/javascript">
+
+        var firstNameEl = document.getElementById("first_name2");
+        var lastNameEl = document.getElementById("last-name");
+        var locationEl = document.getElementById("location");
+        
+
+        var submitBtn = document.getElementById("submit")
+
+        submitBtn.addEventListener("click", store);
+
+        function store() {
+            var infoObj = {
+                firstName : firstNameEl.value,
+                lastName : lastNameEl.value,
+                location : locationEl.value
+            }
+            var infoObjArr = [infoObj];
+            (window.localStorage.setItem("info", JSON.stringify(infoObjArr)));
+        }        
+    
+        submitBtn.addEventListener("click", navigateHome);
+        function navigateHome() {
+            window.location = "home.html"
+        }
+        
+        var lsName = localStorage.getItem('infoObj');
+
+        if (lsName = true){
+            window.location.assign("home.html");
+        }
+
+
+
+        
+    </script>
 
 </body>
+
 </html>

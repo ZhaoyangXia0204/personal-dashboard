@@ -89,7 +89,7 @@ function generateForecast(userSearch) {
             forecastCard.addClass("col card");
             forecastIcon.attr("src", forecastIconCode);
             forecastDayOf.text(moment()
-                .add((moment().day()) + i - 2, "d")
+                .add( 1+i,"d")
                 .format("MMMM Do"));; //returns sunday as 0, monday as 1...need to run this value through an if statement and change the text accordingly
             forecastHigh.text("High: " + forecastObject.high_temp + "° F");
             forecastLow.text("Low: " + forecastObject.low_temp + "° F");
@@ -108,3 +108,68 @@ function generateForecast(userSearch) {
             // $(".fiveDay").append(biggerCard);
         }
     });
+}
+
+// Stocks
+
+var intervalTime = 60;
+
+document.addEventListener('DOMContentLoaded', () => {
+  // https://financialmodelingprep.com/developer/docs
+
+  var stockList= ["AAPL","GOOGL","NFLX","TWTR","INTC","MSFT","AMZN","CRON","TSLA"];
+  for (let i=0; i<stockList.length; i++){
+    var stockIndex = stockList[i]
+    console.log(stockList.length);
+    console.log(stockList);
+  getRequest(
+    'https://financialmodelingprep.com/api/v3/stock/real-time-price/'+stockIndex+'?datatype=json',
+    drawOutput
+  );
+
+
+  function drawOutput(responseText) {
+
+    let resp = JSON.parse(responseText);
+    console.log (resp);
+
+
+    var newTicket =  $("<div>");
+    newTicket.addClass("ticker-item");
+    newTicket.text(resp.symbol + " $ " + resp.price);
+    $(".ticker-move").append(newTicket);
+
+
+
+}}
+
+  function getRequest(url, success) {
+    var req = false;
+    try {
+      req = new XMLHttpRequest();
+    } catch (e) {
+      try {
+        req = new ActiveXObject("Msxml2.XMLHTTP");
+      } catch (e) {
+        try {
+          req = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (e) {
+          return false;
+        }
+      }
+    }
+    if (!req) return false;
+    if (typeof success != 'function') success = function() {};
+    req.onreadystatechange = function() {
+      if (req.readyState == 4) {
+        if (req.status === 200) {
+          success(req.responseText)
+        }
+      }
+    }
+    req.open("GET", url, true);
+    req.send(null);
+    return req;
+  }
+})
+
