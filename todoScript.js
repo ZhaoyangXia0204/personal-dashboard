@@ -11,7 +11,7 @@ function addActivityItem() {
   var totalItems = parseInt(window.localStorage.getItem("totalToDoItems"));
   totalItems++;
   window.localStorage.setItem("totalToDoItems", totalItems);
-  alert(totalItems);
+  //alert(totalItems);
 }
 
 function addDeleteActivity() {
