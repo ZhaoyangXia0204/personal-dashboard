@@ -20,6 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
     <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24"></script>
     <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-traffic.js?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <title>personal-dashboard</title>
@@ -60,6 +61,13 @@
         <h6 class="dateTime"></h6>
         <h6 class="cityTemp"></h6>
         <div class="fiveDay"></div>
+        <div class ="socialMedia center">
+          <a class="btn btn-icon btn-facebook" href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+          <a class="btn btn-icon btn-twitter" href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+          <a class="btn btn-icon btn-googleplus" href="https://accounts.google.com/" target="_blank"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+          <a class="btn btn-icon btn-linkedin" href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin"></i><span> LinkedIn</span></a>
+          <a class="btn btn-icon btn-github" href="https://github.com/" target="_blank"><i class="fa fa-github"></i><span> Github</span></a>
+        </div>
       </div>
       <div id="toDoList" class="col s12 m5">
         <div class="card blue-grey darken-1">
@@ -109,10 +117,13 @@
           </div>
         </div>
       </div>
-      <div id="nytNews" class="col s12 m3">
+      <div id="nytNews" class="col s12 m6">
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
-            <span class="card-title"></span>
+            <div class="row"></div>
+            <span class="card-title">Today's News <input id="userNewsSearch" type="search" required class="col m4 right"><a class="waves-effect waves-light btn newsSearch right">Search</a></span>
+            <ol class="newsCard">
+            </ol>
           </div>
         </div>
       </div>

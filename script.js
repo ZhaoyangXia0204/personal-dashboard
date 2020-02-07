@@ -9,11 +9,11 @@ generateCurrent(localLocation);
 generateForecast(localLocation);
 var currentTime = moment().hour();
 console.log(currentTime);
-if (currentTime >= 0 && currentTime < 12){
+if (currentTime >= 0 && currentTime < 12) {
   $(".brand-logo").text("Good Morning, " + localName + " " + localLastName)
-}else if (currentTime >= 12 && currentTime < 18){
+} else if (currentTime >= 12 && currentTime < 18) {
   $(".brand-logo").text("Good Afternoon, " + localName + " " + localLastName)
-}else if (currentTime >= 18 && currentTime < 24){
+} else if (currentTime >= 18 && currentTime < 24) {
   $(".brand-logo").text("Good Evening, " + localName + " " + localLastName)
 }
 
@@ -156,9 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
       newTicket.addClass("ticker-item");
       newTicket.text(resp.symbol + " $ " + resp.price);
       $(".ticker-move").append(newTicket);
-
-
-
     }
   }
 
@@ -191,7 +188,71 @@ document.addEventListener('DOMContentLoaded', () => {
     return req;
   }
 })
+// News Sections
+$(".newsSearch").on("click", function(){
+  $(".newsCard").empty();
+  var searchTerm = $("#userNewsSearch").val();
+  console.log(searchTerm);
+  if (searchTerm !== null){
+    return;
+  }else
+  var apiKey = "3be1193829c74cafbb17c2c9c41adec0";
+  var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&apiKey=" + apiKey;
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (news) {
+    console.log(news)
+    for (let i = 0; i < 10; i++) {
+      var newsTitle = news.articles[i].title;
+      var newsLink = news.articles[i].url;
+      console.log(newsTitle);
+      console.log(newsLink);
+      var newsListItems = $("<li>");
+      // var newsBreak = $("<br>");
+      var newsItems = $("<a>");
+      newsItems.text(newsTitle);
+      newsItems.attr("href", newsLink);
+      newsItems.addClass("white-text");
+      newsListItems.append(newsItems);
+      $(".newsCard").append(newsListItems);
+      // $(".newsCard").append(newsBreak);
+    }
+  })
+})
 
+generateNews();
+function generateNews() {
+  var userSearch = "business"; //remove variable afterwords
+  var apiKey = "3be1193829c74cafbb17c2c9c41adec0";
+  var queryURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + apiKey;
+  // "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=6c762d20e62e4c6b87ead4ef3039c7e7"; //top headlines for business
+  console.log(queryURL);
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (news) {
+    console.log(news)
+    for (let i = 0; i < 10; i++) {
+      var newsTitle = news.articles[i].title;
+      var newsLink = news.articles[i].url;
+      console.log(newsTitle);
+      console.log(newsLink);
+      var newsListItems = $("<li>");
+      // var newsBreak = $("<br>");
+      var newsItems = $("<a>");
+      newsItems.text(newsTitle);
+      newsItems.attr("href", newsLink);
+      newsItems.addClass("white-text");
+      newsListItems.append(newsItems);
+      $(".newsCard").append(newsListItems);
+      // $(".newsCard").append(newsBreak);
+    }
+  })
+
+};
+
+// To-do List Dynamic
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 var spanClose = document.getElementsByClassName("close")[0];
