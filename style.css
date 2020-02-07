@@ -24,7 +24,7 @@ width: 500px;
 .ticker-wrap {
     width: 100%;
     padding-left: 100%;
-    background-color: #eee;
+    background-color: black;
 }
 .ticker-move {
     display: inline-block;
@@ -38,6 +38,7 @@ width: 500px;
     animation-name: ticker;
     -webkit-animation-duration: 10s;
     animation-duration: 10s;
+    color: #E5D61C;
 }
 .ticker-move:hover{
     animation-play-state: paused;
@@ -87,4 +88,22 @@ width: 500px;
     float: right;
     font-size: 28px;
     font-weight: bold;
+}
+body {
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/back_our/20190628/ourmid/pngtree-wood-plank-wood-background-image-image_265057.jpg");
+    background-size: 100% 100%;
+    /* background-size:cover;
+    background-repeat: no-repeat no-repeat; */
+}
+/* .wholeRow{
+    margin: 150px;
+}
+.wholeRow2{
+    margin: 150px;
+} */
+.dateTime{
+    color: white
+}
+.cityTemp{
+    color: white;
 }
