@@ -13,6 +13,13 @@
         <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-traffic.js?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
 
+
+   <!--------------Todo List CSS link------->
+   <link rel="stylesheet" type="text/css" href="todoStyle.css" />
+
+
+
+
     
     <title>personal-dashboard</title>
 </head>
@@ -101,6 +108,61 @@
             </div>
         </div>
     </div>
+
+    <!-----------Todo list div--------------------->
+
+    <div id="todoListDiv">
+      <div id="todoListHeader">
+        <p>My To Do List</p>
+        <div id="addTodoListPanel">
+          <input id="addTitleInput" type="text" placeholder="Title..." />
+          <input
+            onclick="addActivityItem();"
+            id="addTitleBtn"
+            type="button"
+            value="Add"
+          />
+          <p style="clear: both;"></p>
+        </div>
+        <div id="listTodo">
+          <div onclick="addDeleteActivity();" class="eachListItem addedItem">
+            <p>1. <span>Hit the Gyme</span></p>
+          </div>
+          <div class="eachListItem">
+            <p>2. <span>available slot</span></p>
+          </div>
+          <div class="eachListItem">
+            <p>3. <span>available slot</span></p>
+          </div>
+          <div class="eachListItem">
+            <p>4. <span>available slot</span></p>
+          </div>
+          <div class="eachListItem">
+            <p>5. <span>available slot</span></p>
+          </div>
+          <div class="eachListItem">
+            <p>6. <span>available slot</span></p>
+          </div>
+          <div class="eachListItem">
+            <p>7. <span>available slot</span></p>
+          </div>
+          <div class="eachListItem">
+            <p>8. <span>available slot</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script src="todoScript.js"></script>
+
+
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="script.js"></script>

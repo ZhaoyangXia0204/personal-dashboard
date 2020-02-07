@@ -20,6 +20,5 @@ function addDeleteActivity() {
   addTitleBtn.style.color = "white";
 }
 
-function changeTo()
 
 //function addTodoItem() {}
