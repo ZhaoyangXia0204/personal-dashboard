@@ -55,8 +55,6 @@
         var firstNameEl = document.getElementById("first_name2");
         var lastNameEl = document.getElementById("last-name");
         var locationEl = document.getElementById("location");
-        
-
         var submitBtn = document.getElementById("submit")
 
         submitBtn.addEventListener("click", store);
@@ -76,19 +74,10 @@
             window.location = "home.html"
         }
         
-        var lsName = JSON.parse(localStorage.getItem("info"));
-        console.log(lsName);      
-
+        var lsName = JSON.parse(localStorage.getItem("info")); 
         if (lsName[0].firstName !== null){
             window.location.assign("home.html");
         }
-         // var localName = lsName[0].firstName;
-        // var localLastName = lsName[0].lastName;
-        // var localLocation = lsName[0].location;
-        // console.log("Your name is: " + localName + " " + localLastName + " " + "Your home is: " + localLocation);
-        // generateCurrent(localLocation);
-        // generateForecast(localLocation);
-        console.log(lsName);
     </script>
 
 </body>
