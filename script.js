@@ -191,3 +191,40 @@ document.addEventListener('DOMContentLoaded', () => {
     return req;
   }
 })
+
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var spanClose = document.getElementsByClassName("close")[0];
+var spanDone = document.getElementsByClassName("done")[0];
+
+
+
+
+btn.onclick = function() {
+  $("#title").val("");
+  $("#details").val("");
+  modal.style.display = "block";
+}
+
+
+spanClose.onclick = function() {
+  modal.style.display = "none";
+  
+
+}
+spanDone.onclick = function() {
+  modal.style.display = "none";
+var eventTitle = $("#title").val();
+var eventList = $("<li>");
+eventList.text(eventTitle);
+$("#events").append(eventList);
+// $('<btn>complete</btn>').append(eventList);
+
+  
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
