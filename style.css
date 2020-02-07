@@ -6,3 +6,33 @@
 height: 500px;
 width: 500px;
  }
+
+ #toDoDiv { 
+    height: 500px;
+    width: 650px;
+    background-color:white;
+    border: 50px solid darkgray;
+    border-radius: 5px;
+    margin: 100px;
+
+    
+    
+ }
+
+ #taskBtn{
+     width: 70px;
+     float:right;
+     color: darkgray;
+ }
+
+ #archiveBtn{
+    width: 70px;
+    float:right;
+    color: darkgray;
+ }
+
+#toDoHeader{
+    width: 90%;
+    border-bottom: 1px darkgray solid;
+
+}

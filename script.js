@@ -1,25 +1,25 @@
 //MAP
-window.onload = function () {
 
-    var map = L.map('map', {
-        layers: MQ.mapLayer(),
-        center: [40.731701, -73.993411],
-        zoom: 12
-    });
-
-    MQ.trafficLayer().addTo(map);
-
-};
 
 // WEATHER
-//Link to subreddits maybe in a dropdown? Add maybe 10-15 subreddits in dropdown? and limit it to top 5?
-generateCurrent();
-generateForecast();
-function generateCurrent() {
+$(".citySearch").on("click", function(){
+    var newCity = $("#currentCity").val();
+    console.log(newCity);
+    generateCurrent(newCity);
+    generateForecast(newCity);
+
+});
+
+// generateCurrent();
+// generateForecast();
+function generateCurrent(userSearch) {
     // var userSearch = "newark"; //remove variable afterwords
+    $(".fiveDay").empty();
+    var latCoord = "";
+    var lonCoord = "";
     var apiKey = "f1347b661a93475fb7c664d08aaa163f";
     var queryURL =
-        "https://api.weatherbit.io/v2.0/current?city=Raleigh,NC&units=I&key=" +
+        "https://api.weatherbit.io/v2.0/current?city=" + userSearch + "&units=I&key=" +
         apiKey;
     console.log(queryURL);
     $.ajax({
@@ -28,22 +28,33 @@ function generateCurrent() {
     }).then(function (current) {
         console.log(current);
         var currentObject = current.data[0];
-        $(".today").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
-        $(".currentCity").text(
-            currentObject.city_name + ", " + currentObject.state_code
-        );
-        $(".currentTemp").text("Temperature: " + currentObject.temp + "° F");
-        $(".currentWind").text(
-            "Wind Speed: " +
-            currentObject.wind_spd +
-            " MPH " +
-            currentObject.wind_cdir
-        );
-        $(".currentHumidity").text("Humidity: " + currentObject.rh + "%");
+        // $(".today").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
+        $(".dateTime").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a")) //currentObject.city_name + ", " + currentObject.state_code +" Temperature: " + currentObject.temp + "° F"
+        $(".cityTemp").text(currentObject.city_name + ", " + currentObject.state_code +" Temperature: " + currentObject.temp + "° F");
+        // $(".currentCity").text(
+        //     currentObject.city_name + ", " + currentObject.state_code
+        // );
+        // $(".currentTemp").text("Temperature: " + currentObject.temp + "° F");
+        var latCoord = currentObject.lat;
+        console.log("lat is: " + latCoord);
+        var lonCoord = currentObject.lon;
+        console.log("lon is: " + lonCoord);
+        // generateMap(latCoord,lonCoord);
+        var map = L.map('map', {
+            layers: MQ.mapLayer(),
+            center: [latCoord, lonCoord],
+            zoom: 12
+        });
+     
+    
+        MQ.trafficLayer().addTo(map);
+    
+      
+        
     });
 }
-function generateForecast() {
-    var userSearch = "edison,nj"; //remove variable afterwords
+function generateForecast(userSearch) {
+    // var userSearch = "edison,nj"; //remove variable afterwords
     var apiKey = "f1347b661a93475fb7c664d08aaa163f";
     var queryURL =
         "http://api.weatherbit.io/v2.0/forecast/daily?city=" +
@@ -78,7 +89,7 @@ function generateForecast() {
             forecastCard.addClass("col card");
             forecastIcon.attr("src", forecastIconCode);
             forecastDayOf.text(moment()
-                .add((moment().day()) + i - 1, "d")
+                .add((moment().day()) + i - 2, "d")
                 .format("MMMM Do"));; //returns sunday as 0, monday as 1...need to run this value through an if statement and change the text accordingly
             forecastHigh.text("High: " + forecastObject.high_temp + "° F");
             forecastLow.text("Low: " + forecastObject.low_temp + "° F");
@@ -97,4 +108,3 @@ function generateForecast() {
             // $(".fiveDay").append(biggerCard);
         }
     });
-}
