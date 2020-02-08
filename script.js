@@ -20,7 +20,7 @@ if (currentTime >= 0 && currentTime < 12) {
 // WEATHER
 $(".citySearch").on("click", function () {
   var newCity = $("#currentCity").val();
-  console.log(newCity);
+  // console.log(newCity);
   generateCurrent(newCity);
   generateForecast(newCity);
 
@@ -33,25 +33,35 @@ function generateCurrent(userSearch) {
   var queryURL =
     "https://api.weatherbit.io/v2.0/current?city=" + userSearch + "&units=I&key=" +
     apiKey;
-  console.log(queryURL);
+  // console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function (current) {
-    console.log(current);
+    // console.log(current);
     var currentObject = current.data[0];
-    $(".dateTime").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a")) 
+    $(".dateTime").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"))
     $(".cityTemp").text(currentObject.city_name + ", " + currentObject.state_code + " Temperature: " + currentObject.temp + "° F" + " " + currentObject.weather.description);
     var latCoord = currentObject.lat;
     console.log("lat is: " + latCoord);
     var lonCoord = currentObject.lon;
     console.log("lon is: " + lonCoord);
-    var map = L.map('map', {
-      layers: MQ.mapLayer(),
+    L.mapquest.key = "NXFIlO7HxQlGc5eWdpbtID6k5u9MPilg";
+    var map = L.mapquest.map("map", {
       center: [latCoord, lonCoord],
+      layers: L.mapquest.tileLayer("map"),
       zoom: 12
     });
-    MQ.trafficLayer().addTo(map);
+    map.addLayer(L.mapquest.trafficLayer());
+    // var mapImage = $("<img>")
+    // var mapquestMap =  "https://www.mapquestapi.com/staticmap/v5/map?center=" + userSearch + "&zoom=12&traffic=flow|cons|inc&key=NXFIlO7HxQlGc5eWdpbtID6k5u9MPilg"
+    // mapImage.attr("src", mapquestMap);
+    // mapImage.attr("alt", "Map that displays traffic");
+    // mapImage.addClass("mapImg");
+    // mapImage.width("100%");
+    // mapImage.height("50%");
+    // $("#map").append(mapImage);
+    // // $(".mapImg").style("width" : 100%)
   });
 }
 
@@ -63,7 +73,7 @@ function generateForecast(userSearch) {
     userSearch +
     "&units=I&days=16&key=" +
     apiKey;
-  console.log(queryURL);
+  // console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -82,7 +92,7 @@ function generateForecast(userSearch) {
         "https://www.weatherbit.io/static/img/icons/" +
         forecastCode +
         ".png";
-      forecastCard.addClass("col card blue-grey darken-1 white-text");
+      forecastCard.addClass("col card blue-grey darken-1 white-text center");
       forecastIcon.attr("src", forecastIconCode);
       forecastDayOf.text(moment()
         .add(1 + i, "d")
@@ -156,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 $(".newsSearch").on("click", function () {
   $(".newsCard").empty();
   var searchTerm = $("#userNewsSearch").val();
-  console.log(searchTerm);
+  // console.log(searchTerm);
   var apiKey = "3be1193829c74cafbb17c2c9c41adec0";
   var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&apiKey=" + apiKey;
   $.ajax({
@@ -167,8 +177,8 @@ $(".newsSearch").on("click", function () {
     for (let i = 0; i < 10; i++) {
       var newsTitle = news.articles[i].title;
       var newsLink = news.articles[i].url;
-      console.log(newsTitle);
-      console.log(newsLink);
+      // console.log(newsTitle);
+      // console.log(newsLink);
       var newsListItems = $("<li>");
       var newsItems = $("<a>");
       newsItems.text(newsTitle);
@@ -184,17 +194,17 @@ generateNews();
 function generateNews() {
   var apiKey = "3be1193829c74cafbb17c2c9c41adec0";
   var queryURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + apiKey;
-  console.log(queryURL);
+  // console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function (news) {
-    console.log(news)
+    // console.log(news)
     for (let i = 0; i < 10; i++) {
       var newsTitle = news.articles[i].title;
       var newsLink = news.articles[i].url;
-      console.log(newsTitle);
-      console.log(newsLink);
+      // console.log(newsTitle);
+      // console.log(newsLink);
       var newsListItems = $("<li>");
       var newsItems = $("<a>");
       newsItems.text(newsTitle);
