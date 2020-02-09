@@ -19,13 +19,6 @@
       rel="stylesheet"
       href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css"
     />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24"></script>
-    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-traffic.js?key=lYrP4vF3Uk5zgTiGGuEzQGwGIVDGuy24"></script> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -37,7 +30,7 @@
   <body>
     <nav class="blue-grey darken-1">
       <div class="nav-wrapper">
-        <div href="#!" class="brand-logo center">
+        <div href="#!" class="brand-logo greeting">
           Good Morning,
           <div class="name"></div>
         </div>
@@ -49,6 +42,7 @@
         <ul class="right hide-on-med-and-down">
           <li><input id="currentCity" type="search" required /></li>
           <li><a class="waves-effect waves-light btn citySearch">Search</a></li>
+          <a class="waves-effect waves-light btn" id = "changeName"><i class="material-icons left">navigate_before</i>Change Name</a>
         </ul>
       </div>
     </nav>
@@ -67,7 +61,7 @@
           <h6 class="cityTemp white-text card-title center"></h6>
         </div>
         <div class="fiveDay"></div>
-        <div class="socialMedia left">
+        <div class="socialMedia left row">
           <a
             class="btn btn-icon btn-facebook"
             href="https://www.facebook.com/"
@@ -105,10 +99,18 @@
           <div class="card-content white-text">
             <span class="card-title center">Today's Schedule</span>
             <hr />
-            <ol id="events"></ol>
+            <ol id="events">
+              <!-- <li class="row">Homework 
+                <label>
+                  <input type="checkbox" />
+                  <span class="right">Complete</span>
+                </label>
+              </li> -->
+            </ol>
             <a id="myBtn" class="waves-effect waves-light btn"
               ><i class="material-icons right">add</i>Add Event</a
             >
+            <a class="waves-effect waves-light btn" id = "clearList"><i class="material-icons"></i>Clear List</a>
             <div id="myModal" class="modal">
               <div class="modal-content">
                 <span class="close"><i class="material-icons">close</i></span>

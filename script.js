@@ -53,15 +53,6 @@ function generateCurrent(userSearch) {
       zoom: 12
     });
     map.addLayer(L.mapquest.trafficLayer());
-    // var mapImage = $("<img>")
-    // var mapquestMap =  "https://www.mapquestapi.com/staticmap/v5/map?center=" + userSearch + "&zoom=12&traffic=flow|cons|inc&key=NXFIlO7HxQlGc5eWdpbtID6k5u9MPilg"
-    // mapImage.attr("src", mapquestMap);
-    // mapImage.attr("alt", "Map that displays traffic");
-    // mapImage.addClass("mapImg");
-    // mapImage.width("100%");
-    // mapImage.height("50%");
-    // $("#map").append(mapImage);
-    // // $(".mapImg").style("width" : 100%)
   });
 }
 
@@ -73,7 +64,6 @@ function generateForecast(userSearch) {
     userSearch +
     "&units=I&days=16&key=" +
     apiKey;
-  // console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -88,12 +78,16 @@ function generateForecast(userSearch) {
       var forecastLow = $("<p>");
       var forecastDesc = $("<p>");
       var forecastCode = forecastObject.weather.icon;
+      var textBreak = $("<br>");
       var forecastIconCode =
         "https://www.weatherbit.io/static/img/icons/" +
         forecastCode +
         ".png";
       forecastCard.addClass("col card blue-grey darken-1 white-text center");
+      // $("img").css({"width": "50px", "height": "50px"});
       forecastIcon.attr("src", forecastIconCode);
+      forecastIcon.attr("alt", "Weather Icon");
+      moment().format("dddd") 
       forecastDayOf.text(moment()
         .add(1 + i, "d")
         .format("MMMM Do"));;
@@ -127,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let resp = JSON.parse(responseText);
       var newTicket = $("<div>");
       newTicket.addClass("ticker-item");
-      newTicket.html(resp.symbol + `<span style="color: white">` + " $ " + resp.price + `</span>`);
+      newTicket.html(resp.symbol + `<span style="color: white">` + " $ " + resp.price.toFixed(2) + `</span>`);
       $(".ticker-move").append(newTicket);
     }
   }
@@ -166,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
 $(".newsSearch").on("click", function () {
   $(".newsCard").empty();
   var searchTerm = $("#userNewsSearch").val();
-  // console.log(searchTerm);
   var apiKey = "3be1193829c74cafbb17c2c9c41adec0";
   var queryURL = "https://newsapi.org/v2/everything?q=" + searchTerm + "&apiKey=" + apiKey;
   $.ajax({
@@ -177,8 +170,6 @@ $(".newsSearch").on("click", function () {
     for (let i = 0; i < 10; i++) {
       var newsTitle = news.articles[i].title;
       var newsLink = news.articles[i].url;
-      // console.log(newsTitle);
-      // console.log(newsLink);
       var newsListItems = $("<li>");
       var newsItems = $("<a>");
       newsItems.text(newsTitle);
@@ -194,17 +185,13 @@ generateNews();
 function generateNews() {
   var apiKey = "3be1193829c74cafbb17c2c9c41adec0";
   var queryURL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + apiKey;
-  // console.log(queryURL);
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function (news) {
-    // console.log(news)
     for (let i = 0; i < 10; i++) {
       var newsTitle = news.articles[i].title;
       var newsLink = news.articles[i].url;
-      // console.log(newsTitle);
-      // console.log(newsLink);
       var newsListItems = $("<li>");
       var newsItems = $("<a>");
       newsItems.text(newsTitle);
@@ -214,7 +201,6 @@ function generateNews() {
       $(".newsCard").append(newsListItems);
     }
   })
-
 };
 
 // To-do List Dynamic
@@ -233,12 +219,26 @@ spanClose.onclick = function () {
   modal.style.display = "none";
 }
 
+var eventArray = [];
+var i = 0;
 spanDone.onclick = function () {
+  console.log(this);
+  console.log(eventArray);
   modal.style.display = "none";
   var eventTitle = $("#title").val();
+  eventArray.push(eventTitle);
   var eventList = $("<li>");
+  var eventLabel = $("<label>");
+  var eventInput = $("<input>");
+  var eventSpan = $("<span>");
+  eventInput.attr("type", "checkbox");
+  eventSpan.addClass("right");
+  eventLabel.append(eventInput, eventSpan);
   eventList.text(eventTitle);
+  eventList.addClass("row");
+  eventList.append(eventLabel);
   $("#events").append(eventList);
+  localStorage.setItem("listOfEvents", JSON.stringify(eventArray));
 }
 
 window.onclick = function (event) {
@@ -246,3 +246,37 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 }
+generateLocal();
+function generateLocal() {
+  var fromLocal = JSON.parse(localStorage.getItem("listOfEvents"));
+  if (fromLocal !== null) {
+    eventArray = fromLocal;
+    console.log(eventArray);
+    for (let i = 0; i < eventArray.length; i++) {
+      var eventList = $("<li>");
+      var eventLabel = $("<label>");
+      var eventInput = $("<input>");
+      var eventSpan = $("<span>");
+      eventInput.attr("type", "checkbox");
+      eventSpan.addClass("right");
+      eventLabel.append(eventInput, eventSpan);
+      eventList.text(eventArray[i]);
+      eventList.addClass("row");
+      eventList.append(eventLabel);
+      $("#events").append(eventList);
+      console.log(eventArray);
+    }
+  }
+}
+
+//Clear local storage button
+var nameBtn = document.getElementById("changeName")
+nameBtn.onclick = function () {
+  localStorage.removeItem("info");
+  window.location.assign("index.html");
+}
+
+$("#clearList").on("click", function(){
+  localStorage.removeItem("listOfEvents");
+  $("#events").empty();
+});
