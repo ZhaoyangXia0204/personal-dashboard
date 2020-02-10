@@ -317,10 +317,11 @@ function generateLocal() {
 });
 
 //Clear local storage buttons
-var nameBtn = document.getElementById("changeName")
+var nameBtn = document.getElementById("changeName") 
 nameBtn.onclick = function () {
   localStorage.removeItem("info");
   window.location.assign("index.html");
+  //Need to add a $("#events").empty(); to clear the list whenever user changes and localStorage.removeItem("listOfEvents");
 }
 
 $("#clearList").on("click", function(){
