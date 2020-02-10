@@ -15,4 +15,4 @@ Zhaoyang Xia - github.com/ZhaoyangXia0204
 Naomi Etienne - github.com/NAOMIME
 
 
-https://henryni914.github.io/personal-dashboard/home.html
+https://henryni914.github.io/personal-dashboard
