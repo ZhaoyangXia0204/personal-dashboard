@@ -1,14 +1,14 @@
 //Get local storage
 var lsName = JSON.parse(localStorage.getItem("info"));
-console.log(lsName);
+// console.log(lsName);
 var localName = lsName[0].firstName;
 var localLastName = lsName[0].lastName;
 var localLocation = lsName[0].location;
-console.log("Your name is: " + localName + " " + localLastName + " " + "Your home is: " + localLocation);
+// console.log("Your name is: " + localName + " " + localLastName + " " + "Your home is: " + localLocation);
 generateCurrent(localLocation);
 generateForecast(localLocation);
 var currentTime = moment().hour();
-console.log(currentTime);
+// console.log(currentTime);
 if (currentTime >= 0 && currentTime < 12) {
   $(".brand-logo").text("Good Morning, " + localName + " " + localLastName)
 } else if (currentTime >= 12 && currentTime < 18) {
@@ -43,9 +43,9 @@ function generateCurrent(userSearch) {
     $(".dateTime").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"))
     $(".cityTemp").text(currentObject.city_name + ", " + currentObject.state_code + " Temperature: " + currentObject.temp + "° F" + " " + currentObject.weather.description);
     var latCoord = currentObject.lat;
-    console.log("lat is: " + latCoord);
+    // console.log("lat is: " + latCoord);
     var lonCoord = currentObject.lon;
-    console.log("lon is: " + lonCoord);
+    // console.log("lon is: " + lonCoord);
     L.mapquest.key = "NXFIlO7HxQlGc5eWdpbtID6k5u9MPilg";
     var map = L.mapquest.map("map", {
       center: [latCoord, lonCoord],
@@ -68,7 +68,7 @@ function generateForecast(userSearch) {
     url: queryURL,
     method: "GET"
   }).then(function (forecast) {
-    console.log(forecast);
+    // console.log(forecast);
     for (let i = 0; i < 5; i++) {
       var forecastObject = forecast.data[i];
       var forecastCard = $("<div>");
@@ -232,14 +232,18 @@ spanDone.onclick = function () {
   var eventInput = $("<input>");
   var eventSpan = $("<span>");
   eventInput.attr("type", "checkbox");
-  eventSpan.addClass("right");
+  eventSpan.addClass("right checkbox");
+  eventSpan.attr("value", eventArray.length - 1)
   eventLabel.append(eventInput, eventSpan);
   eventList.text(eventTitle);
-  eventList.addClass("row");
+  eventList.addClass("row toDoEvent");
+  eventList.attr("data-index", eventArray.length - 1);
   eventList.append(eventLabel);
   $("#events").append(eventList);
   localStorage.setItem("listOfEvents", JSON.stringify(eventArray));
 }
+
+
 
 window.onclick = function (event) {
   if (event.target == modal) {
@@ -248,28 +252,71 @@ window.onclick = function (event) {
 }
 generateLocal();
 function generateLocal() {
+  // eventArray.empty();
   var fromLocal = JSON.parse(localStorage.getItem("listOfEvents"));
   if (fromLocal !== null) {
     eventArray = fromLocal;
-    console.log(eventArray);
+    // console.log(eventArray);
     for (let i = 0; i < eventArray.length; i++) {
       var eventList = $("<li>");
       var eventLabel = $("<label>");
       var eventInput = $("<input>");
       var eventSpan = $("<span>");
       eventInput.attr("type", "checkbox");
-      eventSpan.addClass("right");
+      eventSpan.addClass("right checkbox");
+      eventSpan.attr("value", i)
+      // eventSpan.text(eventArray[i]);
       eventLabel.append(eventInput, eventSpan);
       eventList.text(eventArray[i]);
       eventList.addClass("row");
+      eventList.attr("data-index", i);
       eventList.append(eventLabel);
       $("#events").append(eventList);
-      console.log(eventArray);
+      // console.log(eventArray);
     }
   }
 }
 
-//Clear local storage button
+
+// $(".checkbox").on("click", function(){
+  $(document).on("click", ".checkbox", function(){
+  var i = 0
+  var thisValue = $(this);
+  // console.log(thisValue);
+  var thisObject = $(this)[0];
+  console.log(thisObject);
+  var thisVal = thisObject.getAttribute("value");
+  console.log(thisVal);
+  var targetElement = event.target;
+  // console.log("the target is: " + targetElement);
+  var allLi = document.querySelectorAll("li");
+  // console.log(allLi[5]);
+  var thisLi = allLi[5].getAttribute("data-index");
+  // console.log(thisLi);
+  // console.log(eventArray);
+  // for (let i = 0; i < eventArray.length; i++){
+  var selectLi = allLi[5 + parseInt(thisVal)]; //value doesn't change
+  // console.log(selectLi);
+  var selectLiData = selectLi.getAttribute("data-index");
+  // console.log(selectLiData);
+  if (thisVal == selectLiData){
+    var liText = selectLi.textContent;
+    console.log(liText);
+    selectLi.style.textDecoration = "line-through";
+    console.log(eventArray);
+    var arrayIndexOf = eventArray.indexOf(liText);
+    console.log(arrayIndexOf);
+    eventArray.splice(parseInt(arrayIndexOf), 1); //index changes afters clicking checkbox
+    console.log(eventArray);
+    localStorage.setItem("listOfEvents", JSON.stringify(eventArray))
+    setTimeout(function(){
+      $("#events").empty();
+      generateLocal();
+    }, 2000);
+  }
+});
+
+//Clear local storage buttons
 var nameBtn = document.getElementById("changeName")
 nameBtn.onclick = function () {
   localStorage.removeItem("info");
@@ -280,3 +327,48 @@ $("#clearList").on("click", function(){
   localStorage.removeItem("listOfEvents");
   $("#events").empty();
 });
+
+
+// Zhaoyang's toDoList
+// var todoInput = document.querySelector("#todo-text");
+// var todoForm = document.querySelector("#todo-form");
+// var todoList = document.querySelector("#todo-list");
+// var todoCountSpan = document.querySelector("#todo-count");
+// var todos = [];
+// renderTodos();
+// function renderTodos() {
+//   todoList.innerHTML = "";
+//   for (var i = 0; i < todos.length; i++) {
+//     var todo = todos[i];
+//     window.localStorage.setItem("todolist", JSON.stringify(todo));
+//     var li = document.createElement("li");
+//     var todothings = JSON.parse(localStorage.getItem("todolist"))||[];
+//     console.log(todothings);
+//     li.textContent = (i+1) + ": " + todothings;
+//     li.setAttribute("data-index", i);
+//     li.classList.add("todoli");
+//     var button = document.createElement("button");
+//     button.textContent = "Complete";
+//     li.appendChild(button);
+//     todoList.appendChild(li);
+//   }
+// }
+// todoForm.addEventListener("submit", function(event) {
+//   event.preventDefault();
+//   var todoText = todoInput.value.trim();
+//   console.log(todoText)
+//   if (todoText === "") {
+//     return;
+//   }
+//   todos.push(todoText);
+//   todoInput.value = "";
+//   renderTodos();
+// });
+// todoList.addEventListener("click", function(event) {
+//   var element = event.target;
+//   if (element.matches("button") === true) {
+//     var index = element.parentElement.getAttribute("data-index");
+//     todos.splice(index, 1);
+//     renderTodos();
+//   }
+// });
